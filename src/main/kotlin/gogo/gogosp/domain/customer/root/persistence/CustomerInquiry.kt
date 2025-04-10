@@ -10,7 +10,7 @@ class CustomerInquiry(
     @Column(name = "customer_inquiry_id", nullable = false)
     val customerInquiryId: Long = 0,
 
-    @Column(name = "student_id", nullable = false, unique = true)
+    @Column(name = "student_id", nullable = false)
     val studentId: Long,
 
     @Column(name = "title", nullable = false)
@@ -21,5 +21,8 @@ class CustomerInquiry(
 
     @Column(name = "is_reading", nullable = false)
     val isReading: Boolean,
+
+    @Column(name = "is_opening", nullable = false)
+    val isOpening: Boolean,
 ) {
 }
