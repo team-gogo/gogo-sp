@@ -21,5 +21,8 @@ class CustomerInquiry(
 
     @Column(name = "is_reading", nullable = false)
     val isReading: Boolean,
+
+    @Column(name = "is_opening", nullable = false)
+    val isOpening: Boolean,
 ) {
 }
