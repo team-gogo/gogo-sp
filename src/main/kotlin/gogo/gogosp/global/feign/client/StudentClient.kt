@@ -1,6 +1,7 @@
 package gogo.gogosp.global.feign.client
 
 import gogo.gogosp.global.internal.student.stub.StudentByIdStub
+import gogo.gogosp.global.internal.student.stub.StudentByIdsStub
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -11,4 +12,9 @@ interface StudentClient {
     fun queryStudentByUserId(
         @RequestParam("userId") userId: Long
     ): StudentByIdStub
+
+    @GetMapping("/user/student/bundle")
+    fun queryStudentsByStudentIds(
+        @RequestParam("studentIds") studentIds: List<Long>
+    ): StudentByIdsStub
 }
