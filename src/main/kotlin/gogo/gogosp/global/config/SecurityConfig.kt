@@ -4,6 +4,7 @@ package gogo.gogosp.global.config
 import gogo.gogosp.global.filter.AuthenticationFilter
 import gogo.gogosp.global.handler.CustomAccessDeniedHandler
 import gogo.gogosp.global.handler.CustomAuthenticationEntryPointHandler
+import gogo.gogosp.global.internal.user.stub.Authority
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
@@ -43,6 +44,9 @@ class SecurityConfig(
 
         http.authorizeHttpRequests { httpRequests ->
             httpRequests.requestMatchers(HttpMethod.GET, "/sp/health").permitAll()
+
+            httpRequests.requestMatchers(HttpMethod.POST, "/sp/customer/inquiry").hasAnyRole(Authority.USER.name, Authority.STAFF.name)
+
             httpRequests.anyRequest().denyAll()
         }
 
