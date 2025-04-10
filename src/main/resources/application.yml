@@ -1,14 +1,10 @@
 server:
   port: 8085
-eureka:
-  instance:
-    preferIpAddress: true
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    serviceUrl:
-      defaultZone: http://${EUREKA_HOSTNAME:localhost}:8761/eureka/
+---
 spring:
+  config:
+    activate:
+      on-profile: local
   application:
     name: gogo-sp
   main:
@@ -24,5 +20,25 @@ spring:
   datasource:
     url: jdbc:mysql://${DB_URL:localhost:3306}/${DB_NAME:gogo-sp}?useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
     username: ${DB_USER:root}
-    password: ${DB_PASSWORD:1029384756}
+    password: ${DB_PASSWORD:12345}
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["prometheus", "info"]
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${EUREKA_HOSTNAME:localhost}:8761/eureka/
